@@ -1,6 +1,7 @@
 package com.example.spal.generation2you;
 
 import java.util.List;
+import java.util.ArrayList;
 
 /**
  * Created by spal on 11/5/16.
@@ -11,6 +12,10 @@ public class ProfileYoung {
     private Location location;
     private List<ProfileSenior> matches;
 
+	/* Constructor*/
+	public ProfileYoung(){
+		matches = new ArrayList<ProfileSenior>();
+	}
     /** Setters */
     public void setName(String name) {
         mName = name;

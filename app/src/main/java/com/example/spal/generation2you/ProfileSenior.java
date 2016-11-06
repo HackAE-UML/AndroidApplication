@@ -1,5 +1,6 @@
-package com.example.spal.generation2you;
+package myProject;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -11,7 +12,12 @@ public class ProfileSenior {
     private Location location;
     private List<String> likes;
     private List<ProfileYoung> matches;
-
+    
+    /*Constructor */
+    public ProfileSenior(){
+    	likes = new ArrayList<String>();
+    	matches = new ArrayList<ProfileYoung>();
+    }
     /** Setters */
     public void setName(String name) {
         mName = name;
