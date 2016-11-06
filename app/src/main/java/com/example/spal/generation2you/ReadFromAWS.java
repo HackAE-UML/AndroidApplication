@@ -14,37 +14,12 @@
  */
 package com.example.spal.generation2you;
 
-import android.os.AsyncTask;
-import android.os.StrictMode;
-
-import com.amazonaws.auth.AWSCredentials;
-import com.amazonaws.services.s3.internal.*;
-import com.amazonaws.services.s3.model.S3ObjectSummary;
-
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.io.Writer;
-import java.util.UUID;
-
-import com.amazonaws.AmazonClientException;
-import com.amazonaws.AmazonServiceException;
-import com.amazonaws.regions.Region;
-import com.amazonaws.regions.Regions;
-import com.amazonaws.services.s3.AmazonS3;
-import com.amazonaws.services.s3.AmazonS3Client;
-import com.amazonaws.services.s3.iterable.S3Objects;
-import com.amazonaws.services.s3.model.Bucket;
-import com.amazonaws.services.s3.model.GetObjectRequest;
-import com.amazonaws.services.s3.model.ListObjectsRequest;
-import com.amazonaws.services.s3.model.ObjectListing;
-import com.amazonaws.services.s3.model.PutObjectRequest;
-import com.amazonaws.services.s3.model.S3Object;
-import com.amazonaws.services.s3.model.S3ObjectSummary;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -52,6 +27,10 @@ import com.amazonaws.services.s3.model.S3ObjectSummary;
  */
 public class ReadFromAWS {
     public static final String my_bucket = "generationu-userfiles-mobilehub-762974824";
+    
+    /*
+     * Test
+     */
     public static void main() throws IOException {
         /*
          * TODO
@@ -67,7 +46,7 @@ public class ReadFromAWS {
         	/*
         	 * Andy's sample senior reading code
         	 */
-            ReadAllSeniorFiles();
+            List<ProfileSenior> l = ReadAllSeniorFiles();
 
         } catch (AmazonServiceException ase) {
             System.out.println("Caught an AmazonServiceException, which means your request made it "
@@ -88,7 +67,10 @@ public class ReadFromAWS {
     /*
      * Reads all of the senior files from my_bucket
      */
-    private static void ReadAllSeniorFiles() throws java.io.IOException {
+    private static List<ProfileSenior> ReadAllSeniorFiles() throws java.io.IOException {
+    	
+    	ArrayList<ProfileSenior> seniors = new ArrayList<ProfileSenior>();
+    	
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
 
@@ -120,7 +102,7 @@ public class ReadFromAWS {
 
             //Load Senior data from xml
             //TODO Replace with your xml processing function
-            displayTextInputStream(objectData);
+            seniors.add(XMLParser.XMLToSenior(is));
             //
         }
     }
