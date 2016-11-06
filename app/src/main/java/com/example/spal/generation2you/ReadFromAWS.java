@@ -120,6 +120,50 @@ public class ReadFromAWS {
         return seniors;
     }
 
+    /*
+     * Reads all of the senior files from my_bucket
+     */
+    private static List<ProfileYoung> ReadAllYoungFiles() throws java.io.IOException {
+    	
+    	ArrayList<ProfileYoung> youngs = new ArrayList<ProfileYoung>();
+    	
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+
+        AWSCredentials credentials = new AWSCredentials() {
+            @Override
+            public String getAWSAccessKeyId() {
+                return Constants.AWSAccessKeyId;
+            }
+
+            @Override
+            public String getAWSSecretKey() {
+                return Constants.AWSSecretKey;
+            }
+        };
+
+        AmazonS3Client s3 = new AmazonS3Client(credentials);
+
+        //loop through objects in SeniorProfiles/
+        for( S3ObjectSummary summary : S3Objects.withPrefix(s3, my_bucket, "VolunteerProfiles/") ) {
+
+            //creates a new request for each object
+            GetObjectRequest Request = new GetObjectRequest( summary.getBucketName(), summary.getKey());
+
+            //get the object from the database
+            S3Object object = s3.getObject(Request);
+
+            //Read the object's data into an InputStream
+            InputStream is = object.getObjectContent();
+
+            //Load Senior data from xml
+            //TODO Replace with your xml processing function
+            seniors.add(XmlParser.XMLToYoung(is));
+            //
+        }
+
+        return seniors;
+    }
     /**
      * Imports the contents of the specified input stream as text.
      *

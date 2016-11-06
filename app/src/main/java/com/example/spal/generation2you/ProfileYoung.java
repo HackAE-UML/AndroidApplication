@@ -24,13 +24,28 @@ public class ProfileYoung {
     private int mAge;
     private Location location;
     private List<ProfileSenior> matches;
-
+    private int mId;
+    
+    /* Constructor */
+    public ProfileYoung(){
+    	matches = new ArrayList<ProfileSenior>();
+    }
+    public ProfileYoung(ProfileYoung another){
+    	this.mName = another.mName;
+    	this.mAge = another.mAge;
+    	this.location = another.location;
+    	this.matches = new ArrayList<ProfileSenior>(another.matches);
+    	this.mId = another.mId;
+    }
     /** Setters */
     public void setName(String name) {
         mName = name;
     }
     public void setAge(int age) {
         mAge = age;
+    }
+    public void setId(int id) {
+        mId = id;
     }
     public void setLocation(String street, String city, String state) {
         location = new Location(street, city, state);
@@ -45,6 +60,9 @@ public class ProfileYoung {
     }
     public int getAge() {
         return mAge;
+    }
+    public int getId() {
+        return mId;
     }
     public Location getLocation() {
         return location;
