@@ -14,6 +14,11 @@
  */
 package com.example.spal.generation2you;
 
+import android.os.AsyncTask;
+import android.os.StrictMode;
+
+import com.amazonaws.auth.AWSCredentials;
+import com.amazonaws.services.s3.internal.*;
 import com.amazonaws.services.s3.model.S3ObjectSummary;
 
 import java.io.BufferedReader;
@@ -84,7 +89,22 @@ public class ReadFromAWS {
      * Reads all of the senior files from my_bucket
      */
     private static void ReadAllSeniorFiles() throws java.io.IOException {
-        AmazonS3Client s3 = new AmazonS3Client();
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+
+        AWSCredentials credentials = new AWSCredentials() {
+            @Override
+            public String getAWSAccessKeyId() {
+                return Constants.AWSAccessKeyId;
+            }
+
+            @Override
+            public String getAWSSecretKey() {
+                return Constants.AWSSecretKey;
+            }
+        };
+
+        AmazonS3Client s3 = new AmazonS3Client(credentials);
 
         //loop through objects in SeniorProfiles/
         for( S3ObjectSummary summary : S3Objects.withPrefix(s3, my_bucket, "SeniorProfiles/") ) {
