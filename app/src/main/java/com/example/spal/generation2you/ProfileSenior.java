@@ -9,6 +9,8 @@ import java.util.List;
 public class ProfileSenior {
     private String mName;
     private int mAge;
+    private int mID;
+    private String mGender;
     private Location location;
     private List<String> likes;
     private List<ProfileYoung> matches;
@@ -32,6 +34,10 @@ public class ProfileSenior {
     public void setAge(int age) {
         mAge = age;
     }
+    public void setID(int id) { mID = id; }
+    public void setGender(String gender) {
+        mGender = gender.toLowerCase();
+    }
     public void setLocation(String street, String city, String state) {
         location = new Location(street, city, state);
     }
@@ -49,6 +55,7 @@ public class ProfileSenior {
     public int getAge() {
         return mAge;
     }
+    public int getID() { return mID; }
     public Location getLocation() {
         return location;
     }
@@ -73,6 +80,21 @@ public class ProfileSenior {
         }
     	return profiles;
     }
+
+    public String[] toStringArray() {
+        ArrayList<String> temp = new ArrayList<>();
+
+        temp.add(getName());
+        temp.add(getAge() + "");
+        temp.add(getLocation().toString());
+        temp.add(getLikes().toString());
+
+        String[] toReturn = new String[temp.size()];
+        toReturn = temp.toArray(toReturn);
+
+        return toReturn;
+    }
+
 
     /**
      * Check to see if a passed young profile is a match with current Senior Profile by iD check

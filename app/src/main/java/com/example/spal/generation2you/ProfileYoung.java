@@ -1,5 +1,6 @@
 package com.example.spal.generation2you;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.DocumentBuilder;
@@ -22,7 +23,9 @@ import java.util.logging.Logger;
 public class ProfileYoung {
     private String mName;
     private int mAge;
+    private int mID;
     private Location location;
+    private List<String> likes;
     private List<ProfileSenior> matches;
     private int mId;
     
@@ -50,6 +53,9 @@ public class ProfileYoung {
     public void setLocation(String street, String city, String state) {
         location = new Location(street, city, state);
     }
+    public void addLike(String like) {
+        likes.add(like.toLowerCase());
+    }
     public void addMatch(ProfileSenior profile) {
         matches.add(profile);
     }
@@ -64,8 +70,12 @@ public class ProfileYoung {
     public int getId() {
         return mId;
     }
+
     public Location getLocation() {
         return location;
+    }
+    public List<String> getLikes() {
+        return likes;
     }
     public List<ProfileSenior> getMatches() {
         return matches;
@@ -78,6 +88,25 @@ public class ProfileYoung {
      */
     public boolean checkProfileMatch(ProfileSenior profile) {
         return matches.contains(profile);
+    }
+
+    public String[] toStringArray() {
+        ArrayList<String> temp = new ArrayList<>();
+
+        temp.add(getName());
+        temp.add(getAge() + "");
+        temp.add(getLocation().toString());
+        temp.add(getLikes().toString());
+
+        String[] toReturn = new String[temp.size()];
+        toReturn = temp.toArray(toReturn);
+
+        return toReturn;
+    }
+
+    @Override
+    public String toString() {
+        return getName();
     }
 
     /**

@@ -38,11 +38,11 @@ import com.amazonaws.services.s3.model.S3ObjectSummary;
  */
 public class ReadFromAWS {
     public static final String my_bucket = "generationu-userfiles-mobilehub-762974824";
-    
+
     /*
      * Test
      */
-    public static void main() throws IOException {
+    public static List<ProfileSenior> main() throws Exception {
         /*
          * TODO
          * Create your credentials file at ~/.aws/credentials (C:\Users\USER_NAME\.aws\credentials for Windows users) 
@@ -53,11 +53,13 @@ public class ReadFromAWS {
          * aws_secret_access_key = YOUR_SECRET_ACCESS_KEY
          */
 
+        List<ProfileSenior> profileList = null;
+
         try {
         	/*
         	 * Andy's sample senior reading code
         	 */
-            List<ProfileSenior> profileList = ReadAllSeniorFiles();
+            profileList = ReadAllSeniorFiles();
 
         } catch (AmazonServiceException ase) {
             System.out.println("Caught an AmazonServiceException, which means your request made it "
@@ -73,12 +75,14 @@ public class ReadFromAWS {
                     + "such as not being able to access the network.");
             System.out.println("Error Message: " + ace.getMessage());
         }
+
+        return profileList;
     }
 
     /*
      * Reads all of the senior files from my_bucket
      */
-    private static List<ProfileSenior> ReadAllSeniorFiles() throws java.io.IOException {
+    public static List<ProfileSenior> ReadAllSeniorFiles() throws Exception {
     	
     	ArrayList<ProfileSenior> seniors = new ArrayList<>();
     	
@@ -113,20 +117,22 @@ public class ReadFromAWS {
 
             //Load Senior data from xml
             //TODO Replace with your xml processing function
-            seniors.add(XmlParser.XMLToSenior(is));
-            //
+            ProfileSenior temp = XmlParser.XMLToSenior(is);
+            if (temp != null) {
+                seniors.add(temp);
+            }
         }
 
         return seniors;
     }
 
     /*
-     * Reads all of the senior files from my_bucket
+     * Reads all of the volunteer files from my_bucket
      */
-    private static List<ProfileYoung> ReadAllYoungFiles() throws java.io.IOException {
-    	
-    	ArrayList<ProfileYoung> youngs = new ArrayList<ProfileYoung>();
-    	
+    public static List<ProfileYoung> ReadAllVolunteerFiles() throws Exception {
+
+        ArrayList<ProfileYoung> volunteers = new ArrayList<ProfileYoung>();
+
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
 
@@ -144,7 +150,7 @@ public class ReadFromAWS {
 
         AmazonS3Client s3 = new AmazonS3Client(credentials);
 
-        //loop through objects in SeniorProfiles/
+        //loop through objects in VolunteerProfiles/
         for( S3ObjectSummary summary : S3Objects.withPrefix(s3, my_bucket, "VolunteerProfiles/") ) {
 
             //creates a new request for each object
@@ -156,14 +162,17 @@ public class ReadFromAWS {
             //Read the object's data into an InputStream
             InputStream is = object.getObjectContent();
 
-            //Load Senior data from xml
+            //Load Volunteer data from xml
             //TODO Replace with your xml processing function
-            seniors.add(XmlParser.XMLToYoung(is));
-            //
+            ProfileYoung temp = XmlParser.XMLToVolunteer(is);
+            if (temp != null) {
+                volunteers.add(temp);
+            }
         }
 
-        return seniors;
+        return volunteers;
     }
+
     /**
      * Imports the contents of the specified input stream as text.
      *
@@ -172,7 +181,7 @@ public class ReadFromAWS {
      *
      * @throws IOException
      */
-    private static void importStream(InputStream input) throws IOException {
+    private static List<String> importStream(InputStream input) throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(input));
         List<String> lines = new ArrayList<>();
 
@@ -185,7 +194,8 @@ public class ReadFromAWS {
 
         if (lines.size() > 0) {
             // At this point, we have a list of lines for each XML file in 'lines'
-            System.out.println(lines);
+            return lines;
         }
+        return null;
     }
 }
