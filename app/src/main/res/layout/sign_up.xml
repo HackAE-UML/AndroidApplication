@@ -22,7 +22,7 @@
 
             <!-- Header -->
             <TextView
-                android:id="@+id/username"
+                android:id="@+id/header"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Sign Up"
@@ -31,6 +31,7 @@
 
             <!-- Username -->
             <EditText
+                android:id="@+id/username"
                 android:layout_width="fill_parent"
                 android:layout_height="50dp"
                 android:hint="Username"
@@ -38,6 +39,7 @@
 
             <!-- Password -->
             <EditText
+                android:id="@+id/password"
                 android:layout_width="fill_parent"
                 android:layout_height="50dp"
                 android:hint="Password"
@@ -46,143 +48,89 @@
 
             <!-- Confirm Password -->
             <EditText
+                android:id="@+id/confirmPassword"
                 android:layout_width="fill_parent"
                 android:layout_height="50dp"
                 android:hint="Confirm Password"
                 android:inputType="textPassword"
                 android:layout_gravity="start"/>
 
-            <View
-                android:layout_width="fill_parent"
-                android:layout_height="1dp"
-                android:background="#777777"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="20dp"/>
+            <!-- Personal Information Text -->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/confirmPassword">
+
+                <TextView android:id="@+id/or"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:textColor="#777777"
+                    android:text="personal information"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp" />
+            </RelativeLayout>
 
             <!-- First Name -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="10dp">
-                <ImageButton
-                    android:id="@+id/btnSpeakFName"
-                    android:layout_width="50dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="end"
-                    android:src="@android:drawable/ic_btn_speak_now" />
-                <EditText
-                    android:layout_width="fill_parent"
-                    android:layout_height="50dp"
-                    android:hint="First Name"
-                    android:inputType="textCapWords"
-                    android:layout_gravity="start"/>
-            </LinearLayout>
+            <EditText
+                android:id="@+id/fName"
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:hint="First Name"
+                android:inputType="textCapWords"
+                android:layout_gravity="start"/>
 
             <!-- Last Name -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="10dp">
-                <ImageButton
-                    android:id="@+id/btnSpeakLName"
-                    android:layout_width="50dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="end"
-                    android:src="@android:drawable/ic_btn_speak_now" />
-                <EditText
-                    android:layout_width="fill_parent"
-                    android:layout_height="50dp"
-                    android:hint="Last Name"
-                    android:inputType="textCapWords"
-                    android:layout_gravity="start"/>
-            </LinearLayout>
+            <EditText
+                android:id="@+id/lName"
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:hint="Last Name"
+                android:inputType="textCapWords"
+                android:layout_gravity="start"/>
 
             <!-- Street -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="10dp">
-                <ImageButton
-                    android:id="@+id/btnSpeakStreet"
-                    android:layout_width="50dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="end"
-                    android:src="@android:drawable/ic_btn_speak_now" />
-                <EditText
-                    android:layout_width="fill_parent"
-                    android:layout_height="50dp"
-                    android:hint="Address (101 Main Street)"
-                    android:inputType="textCapWords"
-                    android:layout_gravity="start"/>
-            </LinearLayout>
+            <EditText
+                android:id="@+id/street"
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:hint="Address (101 Main Street)"
+                android:inputType="textCapWords"
+                android:layout_gravity="start"/>
 
             <!-- City -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="10dp">
-                <ImageButton
-                    android:id="@+id/btnSpeakCity"
-                    android:layout_width="50dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="end"
-                    android:src="@android:drawable/ic_btn_speak_now" />
-                <EditText
-                    android:layout_width="fill_parent"
-                    android:layout_height="50dp"
-                    android:hint="City"
-                    android:inputType="textCapWords"
-                    android:layout_gravity="start"/>
-            </LinearLayout>
+            <EditText
+                android:id="@+id/city"
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:hint="City"
+                android:inputType="textCapWords"
+                android:layout_gravity="start"/>
 
             <!-- State -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="10dp">
-                <ImageButton
-                    android:id="@+id/btnSpeakState"
-                    android:layout_width="50dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="end"
-                    android:src="@android:drawable/ic_btn_speak_now" />
-                <EditText
-                    android:layout_width="fill_parent"
-                    android:layout_height="50dp"
-                    android:hint="State"
-                    android:inputType="textCapWords"
-                    android:layout_gravity="start"/>
-            </LinearLayout>
+            <EditText
+                android:id="@+id/state"
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:hint="State"
+                android:inputType="textCapWords"
+                android:layout_gravity="start"/>
 
             <!-- Birthday -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="10dp">
-                <ImageButton
-                    android:id="@+id/btnSpeakAge"
-                    android:layout_width="50dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="end"
-                    android:src="@android:drawable/ic_btn_speak_now" />
-                <EditText
-                    android:layout_width="fill_parent"
-                    android:layout_height="50dp"
-                    android:hint="Date of Birth"
-                    android:inputType="textCapWords"
-                    android:layout_gravity="start"/>
-            </LinearLayout>
+            <!--<EditText-->
+                <!--android:id="@+id/birthday"-->
+                <!--android:layout_width="fill_parent"-->
+                <!--android:layout_height="50dp"-->
+                <!--android:hint="Date of Birth"-->
+                <!--android:layout_gravity="start"/>-->
 
             <!-- Submit -->
             <Button
+                android:id="@+id/submit"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
+                android:onClick="uploadToAWS"
                 android:text="Submit"/>
         </LinearLayout>
     </ScrollView>

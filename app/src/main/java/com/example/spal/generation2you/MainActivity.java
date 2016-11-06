@@ -16,13 +16,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
-    public void seniorSignIn(View view) {
-        Intent intent = new Intent(context, SignUp.class);
+    public void seniorSignUp(View view) {
+        Intent intent = new Intent(context, SeniorList.class);
         intent.putExtra("personType","senior");
         startActivity(intent);
     }
 
-    public void volunteerSignIn(View view) {
+    public void volunteerSignUp(View view) {
         Intent intent = new Intent(context, SignUp.class);
         intent.putExtra("personType","volunteer");
         startActivity(intent);

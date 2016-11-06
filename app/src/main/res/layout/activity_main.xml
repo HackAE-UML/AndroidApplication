@@ -91,7 +91,7 @@
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
             android:text="@string/signUp_Elder"
-            android:onClick="seniorSignIn"
+            android:onClick="seniorSignUp"
             android:background="@color/colorAccent"/>
         <Button
             android:textColor="#FFFFFF"
@@ -99,7 +99,7 @@
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
             android:text="@string/signUp_Young"
-            android:onClick="volunteerSignIn"
+            android:onClick="volunteerSignUp"
             android:background="@color/colorAccent"/>
     </LinearLayout>
 </RelativeLayout>
