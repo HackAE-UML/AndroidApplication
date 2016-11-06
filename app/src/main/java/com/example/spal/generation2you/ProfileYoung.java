@@ -129,7 +129,6 @@ public class ProfileYoung {
                     id = matches.getName();
                 }
 
-
                 DocumentBuilderFactory dbFactory =
                         DocumentBuilderFactory.newInstance();
                 DocumentBuilder dBuilder =
@@ -193,7 +192,6 @@ public class ProfileYoung {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
         }
     }
 }

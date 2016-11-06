@@ -77,6 +77,10 @@ public class XmlParser {
                         String id = el.getElementsByTagName("id").item(0).getTextContent();
                         senior.setID(Integer.parseInt(id));
 
+                        // get Gender
+                        String gender = el.getElementsByTagName("gender").item(0).getTextContent();
+                        senior.setGender(gender);
+
                         //retrieves all address fields and packages into a location
                         String street = el.getElementsByTagName("street").item(0).getTextContent();
                         String city = el.getElementsByTagName("city").item(0).getTextContent();

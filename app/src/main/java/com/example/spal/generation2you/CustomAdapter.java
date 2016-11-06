@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 class CustomAdapter extends ArrayAdapter< ProfileSenior > {
@@ -25,11 +26,19 @@ class CustomAdapter extends ArrayAdapter< ProfileSenior > {
         TextView rowName = (TextView) view.findViewById(R.id.rowName);
         TextView rowLocation = (TextView) view.findViewById(R.id.rowLocation);
         TextView rowActivity = (TextView) view.findViewById(R.id.rowActivity);
+        ImageView profileImg = (ImageView) view.findViewById(R.id.rowImage);
 
         // Populate both TextViews
         rowName.setText(profile.getName() + ", " + profile.getAge());
         rowLocation.setText(profile.getLocation().toString());
         rowActivity.setText("Activity: " + profile.getLikes().get(0));
+
+        if (profile.getGender().equalsIgnoreCase("m")) {
+            profileImg.setImageResource(R.drawable.avatar_male);
+        } else {
+            profileImg.setImageResource(R.drawable.avatar_female);
+        }
+
         return view;
     }
 }

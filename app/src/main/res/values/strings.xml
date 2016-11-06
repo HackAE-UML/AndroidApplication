@@ -7,10 +7,6 @@
     <string name="usernameHint">Username</string>
     <string name="passwordHint">Password</string>
     <string name="signInDivider">OR CREATE A NEW ACCOUNT</string>
-	<string name="likesSubmit">Submit</string>
-	<string name="likesLabel">Likes</string>
-	<string name="dislikesLabel">Dislikes</string>
-	<string name="likesHint">List your likes.</string>
-	<string name="dislikesHint">List your dislikes.</string>
-	
+    <string name="likesSubmit">Submit</string>
+    <string name="likesLabel">What are some things that you like to do?</string>
 </resources>
