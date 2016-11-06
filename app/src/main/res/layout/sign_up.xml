@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:fillViewport="true"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.spal.generation2you.SignUp">
+
+    <ScrollView
+        android:id="@+id/form"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <!-- Header -->
+            <TextView
+                android:id="@+id/username"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Sign Up"
+                android:textSize="20sp"
+                android:textStyle="bold"/>
+
+            <!-- Username -->
+            <EditText
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:hint="Username"
+                android:layout_gravity="start"/>
+
+            <!-- Password -->
+            <EditText
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:hint="Password"
+                android:inputType="textPassword"
+                android:layout_gravity="start"/>
+
+            <!-- Confirm Password -->
+            <EditText
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:hint="Confirm Password"
+                android:inputType="textPassword"
+                android:layout_gravity="start"/>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="#777777"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"/>
+
+            <!-- First Name -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp">
+                <ImageButton
+                    android:id="@+id/btnSpeakFName"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:src="@android:drawable/ic_btn_speak_now" />
+                <EditText
+                    android:layout_width="fill_parent"
+                    android:layout_height="50dp"
+                    android:hint="First Name"
+                    android:inputType="textCapWords"
+                    android:layout_gravity="start"/>
+            </LinearLayout>
+
+            <!-- Last Name -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp">
+                <ImageButton
+                    android:id="@+id/btnSpeakLName"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:src="@android:drawable/ic_btn_speak_now" />
+                <EditText
+                    android:layout_width="fill_parent"
+                    android:layout_height="50dp"
+                    android:hint="Last Name"
+                    android:inputType="textCapWords"
+                    android:layout_gravity="start"/>
+            </LinearLayout>
+
+            <!-- Street -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp">
+                <ImageButton
+                    android:id="@+id/btnSpeakStreet"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:src="@android:drawable/ic_btn_speak_now" />
+                <EditText
+                    android:layout_width="fill_parent"
+                    android:layout_height="50dp"
+                    android:hint="Address (101 Main Street)"
+                    android:inputType="textCapWords"
+                    android:layout_gravity="start"/>
+            </LinearLayout>
+
+            <!-- City -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp">
+                <ImageButton
+                    android:id="@+id/btnSpeakCity"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:src="@android:drawable/ic_btn_speak_now" />
+                <EditText
+                    android:layout_width="fill_parent"
+                    android:layout_height="50dp"
+                    android:hint="City"
+                    android:inputType="textCapWords"
+                    android:layout_gravity="start"/>
+            </LinearLayout>
+
+            <!-- State -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp">
+                <ImageButton
+                    android:id="@+id/btnSpeakState"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:src="@android:drawable/ic_btn_speak_now" />
+                <EditText
+                    android:layout_width="fill_parent"
+                    android:layout_height="50dp"
+                    android:hint="State"
+                    android:inputType="textCapWords"
+                    android:layout_gravity="start"/>
+            </LinearLayout>
+
+            <!-- Birthday -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp">
+                <ImageButton
+                    android:id="@+id/btnSpeakAge"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:src="@android:drawable/ic_btn_speak_now" />
+                <EditText
+                    android:layout_width="fill_parent"
+                    android:layout_height="50dp"
+                    android:hint="Date of Birth"
+                    android:inputType="textCapWords"
+                    android:layout_gravity="start"/>
+            </LinearLayout>
+
+            <!-- Submit -->
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:text="Submit"/>
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>

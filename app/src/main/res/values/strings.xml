@@ -1,3 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Generation2You</string>
+    <string name="signIn">Sign In</string>
+    <string name="signUp_Elder">Sign up as Senior</string>
+    <string name="signUp_Young">Sign up as Volunteer</string>
+    <string name="usernameHint">Username</string>
+    <string name="passwordHint">Password</string>
+    <string name="signInDivider">OR CREATE A NEW ACCOUNT</string>
 </resources>
