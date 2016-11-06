@@ -42,7 +42,7 @@ public class ReadFromAWS {
     /*
      * Test
      */
-    public static void main() throws IOException {
+    public static void main() throws Exception {
         /*
          * TODO
          * Create your credentials file at ~/.aws/credentials (C:\Users\USER_NAME\.aws\credentials for Windows users) 
@@ -78,7 +78,7 @@ public class ReadFromAWS {
     /*
      * Reads all of the senior files from my_bucket
      */
-    private static List<ProfileSenior> ReadAllSeniorFiles() throws java.io.IOException {
+    private static List<ProfileSenior> ReadAllSeniorFiles() throws Exception {
     	
     	ArrayList<ProfileSenior> seniors = new ArrayList<>();
     	
@@ -113,8 +113,10 @@ public class ReadFromAWS {
 
             //Load Senior data from xml
             //TODO Replace with your xml processing function
-            seniors.add(XmlParser.XMLToSenior(is));
-            //
+            ProfileSenior temp = XmlParser.XMLToSenior(is);
+            if (temp != null) {
+                seniors.add(temp);
+            }
         }
 
         return seniors;
@@ -128,7 +130,7 @@ public class ReadFromAWS {
      *
      * @throws IOException
      */
-    private static void importStream(InputStream input) throws IOException {
+    private static List<String> importStream(InputStream input) throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(input));
         List<String> lines = new ArrayList<>();
 
@@ -141,7 +143,8 @@ public class ReadFromAWS {
 
         if (lines.size() > 0) {
             // At this point, we have a list of lines for each XML file in 'lines'
-            System.out.println(lines);
+            return lines;
         }
+        return null;
     }
 }

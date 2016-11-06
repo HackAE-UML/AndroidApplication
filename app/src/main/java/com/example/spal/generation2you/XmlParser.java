@@ -1,8 +1,11 @@
 package com.example.spal.generation2you;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.InputStream;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -16,26 +19,26 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 public class XmlParser {
-	
+
 	/*
 	 * For test
 	 */
 	public static void main(String[] args){
-		System.out.println("TestBegin");
+//		System.out.println("TestBegin");
 		
-		try{
-			InputStream is = new FileInputStream("SeniorProfile1.xml");
-			ProfileSenior p = XMLToSenior(is);
-			
-			System.out.println( p.getName());
-		}
-		catch(FileNotFoundException e){
-			System.out.println(e.getMessage());
-		}
+//		try{
+//			InputStream is = new FileInputStream("SeniorProfile1.xml");
+//			ProfileSenior p = XMLToSenior(is);
+//
+//			System.out.println( p.getName());
+//		}
+//		catch(FileNotFoundException e){
+//			System.out.println(e.getMessage());
+//		}
 		
 	}
-	public static ProfileSenior XMLToSenior(InputStream is)
-	{
+
+	public static ProfileSenior XMLToSenior(InputStream stream) throws Exception {
 		ProfileSenior senior = new ProfileSenior();
 		
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
@@ -43,7 +46,7 @@ public class XmlParser {
 	         // use the factory to create a documentbuilder
 	         DocumentBuilder builder = factory.newDocumentBuilder();
 
-	         Document doc = builder.parse(is);
+	         Document doc = builder.parse(stream);
 
 	         // get the first element
 	         Element element = doc.getDocumentElement();
@@ -76,7 +79,6 @@ public class XmlParser {
 	        			String street = el.getElementsByTagName("street").item(0).getTextContent();
 	        			String city = el.getElementsByTagName("city").item(0).getTextContent();
 	        			String state = el.getElementsByTagName("state").item(0).getTextContent();
-	        			int zipCode = Integer.parseInt( el.getElementsByTagName("zipcode").item(0).getTextContent());
 	        			senior.setLocation(street, city, state);
 	        		}
 	        		
@@ -97,8 +99,8 @@ public class XmlParser {
 	        	}
 	         }
 	      } catch (Exception ex) {
-	    	 //TODO add more graceful error handling
-	         ex.printStackTrace();
+             // No data found
+             return null;
 	      }
 		
 		return senior;
