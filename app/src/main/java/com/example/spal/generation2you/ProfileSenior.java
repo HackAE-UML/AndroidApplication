@@ -1,4 +1,4 @@
-package myProject;
+package com.example.spal.generation2you;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,8 +25,8 @@ public class ProfileSenior {
     public void setAge(int age) {
         mAge = age;
     }
-    public void setLocation(String street, String city, String state, int zipCode) {
-        location = new Location(street, city, state, zipCode);
+    public void setLocation(String street, String city, String state) {
+        location = new Location(street, city, state);
     }
     public void addLike(String like) {
         likes.add(like.toLowerCase());

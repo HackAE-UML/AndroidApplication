@@ -1,4 +1,4 @@
-package myProject;
+package com.example.spal.generation2you;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -15,7 +15,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-public class XMLParser {
+public class XmlParser {
 	
 	/*
 	 * For test
@@ -77,7 +77,7 @@ public class XMLParser {
 	        			String city = el.getElementsByTagName("city").item(0).getTextContent();
 	        			String state = el.getElementsByTagName("state").item(0).getTextContent();
 	        			int zipCode = Integer.parseInt( el.getElementsByTagName("zipcode").item(0).getTextContent());
-	        			senior.setLocation(street, city, state, zipCode);
+	        			senior.setLocation(street, city, state);
 	        		}
 	        		
 	        		//adds all the  likes one at a time
@@ -88,10 +88,10 @@ public class XMLParser {
 	        		//Can't directly figure out matched id of the young profile from info given in xml
 	        		if( el.getNodeName().contains("matched")) {
 	        			ProfileYoung y = new ProfileYoung();
-		        		y.setLocation(" ",
-		        				" ", 
-		        				el.getElementsByTagName("matched-location").item(0).getTextContent(), 
-		        				0);
+		        		y.setLocation(
+								" ",
+								" ",
+		        				el.getElementsByTagName("matched-location").item(0).getTextContent());
 		        		senior.addMatch(y);
 	        		}
 	        	}

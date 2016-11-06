@@ -32,8 +32,8 @@ public class ProfileYoung {
     public void setAge(int age) {
         mAge = age;
     }
-    public void setLocation(String street, String city, String state, int zipCode) {
-        location = new Location(street, city, state, zipCode);
+    public void setLocation(String street, String city, String state) {
+        location = new Location(street, city, state);
     }
     public void addMatch(ProfileSenior profile) {
         matches.add(profile);
@@ -74,7 +74,6 @@ public class ProfileYoung {
                 String temp_street = location.getStreet();
                 String temp_city = location.getCity();
                 String temp_state = location.getState();
-                int temp_zipcode = location.getZipCode();
                 List<ProfileSenior> temp_matches = getMatches();
                 String id = "";
 
@@ -123,11 +122,6 @@ public class ProfileYoung {
                 Element state = doc.createElement("state");
                 state.appendChild(doc.createTextNode(temp_state));
                 location.appendChild(state);
-
-                //zipcode element
-                Element zipcode = doc.createElement("zipcode");
-                zipcode.appendChild(doc.createTextNode(String.valueOf(temp_zipcode)));
-                location.appendChild(zipcode);
 
                 // matches element
                 Element matches = doc.createElement("matches");

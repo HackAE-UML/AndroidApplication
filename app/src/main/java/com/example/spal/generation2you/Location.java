@@ -7,23 +7,18 @@ public class Location {
     private String mStreet;
     private String mCity;
     private String mState;
-    private int mZipCode;
 
     /** Setters */
-    public Location(String street, String city, String state, int zipCode) {
+    public Location(String street, String city, String state) {
         setStreet(street);
         setCity(city);
         setState(state);
-        setZipCode(zipCode);
     }
     public void setState(String state) {
         mState = state;
     }
     public void setCity(String city) {
         mCity = city;
-    }
-    public void setZipCode(int zip) {
-        mZipCode = zip;
     }
     public void setStreet(String street) {
         mStreet = street;
@@ -36,10 +31,13 @@ public class Location {
     public String getCity() {
         return mCity;
     }
-    public int getZipCode() {
-        return mZipCode;
-    }
     public String getStreet() {
         return mStreet;
+    }
+
+    /* Returns the string representation of this Class.*/
+    @Override
+    public String toString() {
+        return mCity + ", " + mState;
     }
 }

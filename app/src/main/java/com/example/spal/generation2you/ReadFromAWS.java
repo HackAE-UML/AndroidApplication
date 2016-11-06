@@ -14,12 +14,23 @@
  */
 package com.example.spal.generation2you;
 
+import android.os.StrictMode;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.amazonaws.AmazonClientException;
+import com.amazonaws.AmazonServiceException;
+import com.amazonaws.auth.AWSCredentials;
+import com.amazonaws.services.s3.AmazonS3Client;
+import com.amazonaws.services.s3.iterable.S3Objects;
+import com.amazonaws.services.s3.model.GetObjectRequest;
+import com.amazonaws.services.s3.model.S3Object;
+import com.amazonaws.services.s3.model.S3ObjectSummary;
 
 
 /**
@@ -46,7 +57,7 @@ public class ReadFromAWS {
         	/*
         	 * Andy's sample senior reading code
         	 */
-            List<ProfileSenior> l = ReadAllSeniorFiles();
+            List<ProfileSenior> profileList = ReadAllSeniorFiles();
 
         } catch (AmazonServiceException ase) {
             System.out.println("Caught an AmazonServiceException, which means your request made it "
@@ -69,7 +80,7 @@ public class ReadFromAWS {
      */
     private static List<ProfileSenior> ReadAllSeniorFiles() throws java.io.IOException {
     	
-    	ArrayList<ProfileSenior> seniors = new ArrayList<ProfileSenior>();
+    	ArrayList<ProfileSenior> seniors = new ArrayList<>();
     	
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
@@ -98,31 +109,39 @@ public class ReadFromAWS {
             S3Object object = s3.getObject(Request);
 
             //Read the object's data into an InputStream
-            InputStream objectData = object.getObjectContent();
+            InputStream is = object.getObjectContent();
 
             //Load Senior data from xml
             //TODO Replace with your xml processing function
-            seniors.add(XMLParser.XMLToSenior(is));
+            seniors.add(XmlParser.XMLToSenior(is));
             //
         }
+
+        return seniors;
     }
 
     /**
-     * Displays the contents of the specified input stream as text.
+     * Imports the contents of the specified input stream as text.
      *
      * @param input
      *            The input stream to display as text.
      *
      * @throws IOException
      */
-    private static void displayTextInputStream(InputStream input) throws IOException {
+    private static void importStream(InputStream input) throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(input));
+        List<String> lines = new ArrayList<>();
+
         while (true) {
             String line = reader.readLine();
-            if (line == null) break;
+            if (line == null) { break; }
 
-            System.out.println("    " + line);
+            lines.add(line);
         }
-        System.out.println();
+
+        if (lines.size() > 0) {
+            // At this point, we have a list of lines for each XML file in 'lines'
+            System.out.println(lines);
+        }
     }
 }
