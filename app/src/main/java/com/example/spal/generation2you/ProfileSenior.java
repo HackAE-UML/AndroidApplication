@@ -31,13 +31,6 @@ public class ProfileSenior {
     	likes = new ArrayList<String>();
     	matches = new ArrayList<ProfileYoung>();
     }
-    public ProfileSenior(ProfileSenior another){
-    	this.mName = another.mName;
-    	this.mAge = another.mAge;
-    	this.location = another.location;
-    	this.matches = new ArrayList<ProfileYoung>(another.matches);
-    	this.likes = new ArrayList<ProfileYoung>(another.likes);
-    }
     /** Setters */
     public void setName(String name) {
         mName = name;
@@ -74,23 +67,15 @@ public class ProfileSenior {
     public List<String> getLikes() {
         return likes;
     }
-    
+
     /*
      * Checks the matches of this senior against a list
      * of all the young profiles (supplied) and returns those that match
      * @param allYoung List of all ProfileYoungs in the system
      * @return a list of all profileYoungs that have matched with this senior
      */
-    public List<ProfileYoung> getMatches(List<ProfileYoung> allYoung) {
-        List<ProfileYoung> profiles = new ProfileYoung();
-        
-        //loops through all profileYoungs
-        for( ProfileYoung iter : allYoung){
-        	if( checkProfileMatch(iter) ) {
-        		profiles.add(iter);
-        	}
-        }
-    	return profiles;
+    public List<ProfileYoung> getMatches() {
+    	return matches;
     }
 
     public String[] toStringArray() {
@@ -106,23 +91,6 @@ public class ProfileSenior {
         toReturn = temp.toArray(toReturn);
 
         return toReturn;
-    }
-
-
-    /**
-     * Check to see if a passed young profile is a match with current Senior Profile by iD check
-     * @param profile The profile object of the volunteer
-     * @return true if match exists
-     */
-    public boolean checkProfileMatch(ProfileYoung profile) {
-    	for( ProfileYoung iter : matches) {
-    		if(iter.getId() == profiles.getId()){
-    			return true;
-    		}
-    	}
-    	
-    	return false;
-        
     }
 
     /**
