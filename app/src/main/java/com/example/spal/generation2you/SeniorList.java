@@ -2,6 +2,7 @@ package com.example.spal.generation2you;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Parcelable;
 import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -25,14 +27,12 @@ public class SeniorList extends AppCompatActivity {
         setContentView(R.layout.activity_senior_list);
 
         try {
-//            profiles = ReadFromAWS.main();
-            ReadFromAWS.main();
+           profiles = ReadFromAWS.ReadAllSeniorFiles();
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
 
         /*** Now start with ListView stuff ***/
-        // Initialize ListViewAdapter
         final ArrayAdapter<ProfileSenior> adapter
                 = new CustomAdapter(this, profiles.toArray(new ProfileSenior[0]));
 
@@ -49,7 +49,7 @@ public class SeniorList extends AppCompatActivity {
                         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                             // Get item name (something from values list)
                             Intent intent = new Intent(context, ProfilePage.class);
-                            intent.putExtra("personType","volunteer");
+                            intent.putExtra("profiles", profiles.get(position).toStringArray());
                             startActivity(intent);
                         }
                     }

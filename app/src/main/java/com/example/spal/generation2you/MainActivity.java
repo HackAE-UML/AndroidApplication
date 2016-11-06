@@ -16,6 +16,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
+    public void openPage(View view) {
+        Intent intent = new Intent(context, SeniorList.class);
+        intent.putExtra("personType","senior");
+        startActivity(intent);
+    }
+
     public void seniorSignUp(View view) {
         Intent intent = new Intent(context, SeniorList.class);
         intent.putExtra("personType","senior");
